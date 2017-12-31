@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+source "$PLUGIN_CORE_AVAILABLE_PATH/common/functions"
+source "$PLUGIN_AVAILABLE_PATH/storage/functions"
+source "$PLUGIN_AVAILABLE_PATH/docker-options/functions"
+
+storage_create_cmd() {
+  declare desc="Create a new storage path on host"
+  local cmd="storage:create"
+  local passed_phases=(deploy run)
+  [[ -z $2 ]] && dokku_log_fail "storage:create requires a path to be created."
+  local storage_path=${DOKKU_LIB_ROOT}/data/storage/$2
+  mkdir -p "$storage_path"
+  echo "Path $storage_path created"
+}
+
+storage_create_cmd "$@"

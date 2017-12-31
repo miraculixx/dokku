@@ -7,6 +7,8 @@ source "$PLUGIN_AVAILABLE_PATH/storage/functions"
 storage_help_content_func() {
     declare desc="return storage plugin help content"
     cat<<help_content
+    storage:create <path>, Create path on host
+    storage:paths, List available paths on host 
     storage:list <app>, List bind mounts for app's container(s) (host:container)
     storage:mount <app> <host-dir:container-dir>, Create a new bind mount
     storage:report [<app>] [<flag>], Displays a checks report for one or more apps
